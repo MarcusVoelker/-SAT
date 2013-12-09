@@ -48,12 +48,10 @@ dpll [] = True
 dpll x | any null x = False
 dpll x | null x' = True
   where
-    l  = chooseLiteral x'
     x' = foldl pureLiteralAssign up up 
     up = foldl unitPropagate x x 
 dpll x | any null x' = False
   where
-    l  = chooseLiteral x'
     x' = foldl pureLiteralAssign up up 
     up = foldl unitPropagate x x 
 dpll x = dpll ([P l] : x') || dpll ([N l] : x')
