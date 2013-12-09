@@ -1,4 +1,4 @@
--SAT
+λSAT
 ====
 
 Satisfiability Checker in Haskell
