@@ -8,8 +8,7 @@ type CNF = [Clause]
 
 simplifyClause :: Clause -> Int -> Bool -> Maybe Clause
 simplifyClause [] _ _ = Just []
-simplifyClause ((P x):xs) y b | x /= y = (simplifyClause xs y b) >>= (\k -> Just ((P x) : k))
-simplifyClause ((N x):xs) y b | x /= y = (simplifyClause xs y b) >>= (\k -> Just ((N x) : k))
+simplifyClause (x:xs) y b | (extract x) /= y = (simplifyClause xs y b) >>= (\k -> Just (x:k))
 simplifyClause ((P x):xs) _ True = Nothing
 simplifyClause ((N x):xs) _ False = Nothing
 simplifyClause (_:xs) y b = simplifyClause xs y b
