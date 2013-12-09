@@ -12,8 +12,7 @@ simplifyClause ((P x):xs) y b | x /= y = (simplifyClause xs y b) >>= (\k -> Just
 simplifyClause ((N x):xs) y b | x /= y = (simplifyClause xs y b) >>= (\k -> Just ((N x) : k))
 simplifyClause ((P x):xs) _ True = Nothing
 simplifyClause ((N x):xs) _ False = Nothing
-simplifyClause ((P x):xs) y b = simplifyClause xs y b
-simplifyClause ((N x):xs) y b = simplifyClause xs y b
+simplifyClause (_:xs) y b = simplifyClause xs y b
 
 simplifyFormula :: CNF -> Int -> Bool -> CNF
 simplifyFormula cnf x b = catMaybes (map (\k -> simplifyClause k x b) cnf)
